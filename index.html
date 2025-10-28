@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooking Oil Quality Dashboard</title>
+  
+  <!-- Chart.js for graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Cooking Oil Quality Detection</h1>
+  </header>
+
+  <!-- Sensor Value Cards -->
+  <section class="cards">
+    <div class="card">
+      <h3>pH Value</h3>
+      <p id="ph">Loading...</p>
+    </div>
+    <div class="card">
+      <h3>Turbidity</h3>
+      <p id="turbidity">Loading...</p>
+    </div>
+    <div class="card">
+      <h3>Color</h3>
+      <p id="color">Loading...</p>
+    </div>
+  </section>
+
+  <!-- Charts Section -->
+  <section class="charts">
+    <h2>Sensor Trends</h2>
+    <div class="chart-container">
+      <canvas id="phChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="turbidityChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="colorChart"></canvas>
+    </div>
+  </section>
+
+  <!-- External JS -->
+  <script src="script.js"></script>
+</body>
+</html>
