@@ -1,5 +1,4 @@
 # COOKING-OIL-PURITY-DETECTION-FOR-PUBLIC-USE
-![Test](C:\Users\DELL\AppData\Local\Microsoft\Windows\INetCache\IE\HFEU6J64\Screenshot_2025-12-13_133215[1].png)
 
 ## 📌 Overview
 This project presents a **low-cost embedded system for real-time detection of cooking oil purity**, designed to enhance food safety in public-use environments such as **street food vendors, community kitchens, and small-scale restaurants**.
