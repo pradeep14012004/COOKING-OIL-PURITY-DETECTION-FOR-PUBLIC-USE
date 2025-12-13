@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Is Your Cooking Oil Really Healthy?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Poppins", sans-serif;
+      }
+      .page-bg {
+        background: radial-gradient(circle at 20% 30%, #2a1800, #0e0900 80%);
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-bg .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.3;
+        z-index: 0;
+        pointer-events: none;
+        animation: move 10s ease-in-out infinite alternate;
+      }
+      .orb1 {
+        width: 400px;
+        height: 400px;
+        background: #ff9800;
+        top: 5%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .orb2 {
+        width: 300px;
+        height: 300px;
+        background: #ff6b00;
+        bottom: 10%;
+        right: 15%;
+        animation-delay: 2s;
+      }
+      .orb3 {
+        width: 250px;
+        height: 250px;
+        background: #ffd740;
+        top: 50%;
+        right: 40%;
+        animation-delay: 4s;
+      }
+      @keyframes move {
+        from {
+          transform: translateY(0px) rotate(0deg);
+        }
+        to {
+          transform: translateY(-30px) rotate(15deg);
+        }
+      }
+      .hero-title {
+        font-weight: 900;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.448),
+          0 0 10px rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+        -webkit-text-stroke: 1px rgba(255, 165, 0, 0.8);
+      }
+      .hero-subtitle {
+        font-weight: 400;
+        text-shadow: 0 2px 4px rgb(255, 255, 255);
+        color: #b7ecff;
+      }
+      .flip-card {
+        perspective: 1000px;
+      }
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 1rem;
+      }
+      .flip-card-back {
+        transform: rotateY(180deg);
+      }
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+      }
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .cta-button {
+        text-decoration: none;
+        background: linear-gradient(90deg, #ff9800, #ff6f00, #ffb300);
+        padding: 1rem 2.5rem;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        box-shadow: 0 0 25px rgba(255, 136, 0, 0.5);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+      .cta-button:hover {
+        box-shadow: 0 0 35px rgba(255, 193, 7, 0.8);
+        transform: translateY(-4px) scale(1.05);
+      }
+      #particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      @media (max-width: 768px) {
+        #hero h1 {
+          font-size: 2.5rem !important;
+        }
+        #hero p {
+          font-size: 1rem !important;
+        }
+      }
+      #particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        pointer-events: none;
+      }
+      /* Enhanced hover styles for Why Oil Quality Matters cards */
+      .oil-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        color: rgb(255, 255, 255);
+      }
+      .oil-card:hover {
+        color: #ffffff;
+        transform: scale(1.55) rotate(30deg);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0),
+          0 0 60px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 20px rgba(255, 99, 71, 0.7), 0 0 80px rgba(255, 69, 0, 0.5);
+      }
+      .oil-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .oil-card:hover::before {
+        opacity: 1;
+      }
+      /* Styles for Repeated Heating: The Silent Killer cards */
+      .killer-card {
+        color: rgb(255, 255, 255);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+      .killer-card:hover {
+        transform: scale(1.08) rotate(-1deg);
+        box-shadow: 0 0 20px rgba(255, 99, 71, 0.7), 0 0 80px rgba(255, 69, 0, 0.5);
+        background: linear-gradient(135deg, rgba(255, 99, 71, 0.3), rgba(255, 69, 0, 0.3));
+      }
+      .killer-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .killer-card:hover::before {
+        opacity: 1;
+      }
+      .sparkle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <div class="page-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+      <canvas id="particles"></canvas>
+      <section
+        id="hero"
+        style="
+          position: relative;
+          overflow: hidden;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: #fff;
+          font-family: 'Poppins', sans-serif;
+        "
+      >
+        <div style="z-index: 10; max-width: 900px; padding: 2rem">
+          <h1
+            style="
+              font-size: 4rem;
+              font-weight: 800;
+              letter-spacing: 1px;
+              background: linear-gradient(90deg, #ffb347, #ff6b00, #ffd700);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              text-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+              margin-bottom: 1rem;
+            "
+          >
+            ⚗️ Is Your Cooking Oil <span style="color: #ff8800">Healthy?</span>
+          </h1>
+          <p
+            style="
+              font-size: 1.3rem;
+              color: #f2f2f2;
+              opacity: 0.85;
+              margin-bottom: 2.5rem;
+              line-height: 1.6;
+            "
+          >
+            Uncover the
+            <span style="color: #ffae42; font-weight: 600">hidden truth</span>
+            about your oils — where
+            <span style="color: #ff6b00">science</span> meets
+            <span style="color: #ffe082">flavor</span> and
+            <span style="color: #ffd54f">health</span>.
+          </p>
+          <a href="#popular-oils" class="cta-button"> Discover Now</a>
+        </div>
+        <canvas id="particles"></canvas>
+      </section>
+
+      <section id="popular-oils" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-12 text-gray-100">
+            Popular Oils Unveiled
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="flip-card h-64">
+              <div class="flip-card-inner">
+                <div
+                  class="flip-card-front bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl p-6 text-center text-white shadow-lg flex flex-col items-center justify-center"
+                >
+                  <i class="fas fa-sun text-5xl mb-4"></i>
+                  <h3 class="text-xl font-semibold">Sunflower Oil</h3>
+                  <p class="text-sm mt-2">“The Everyday Fryer”</p>
+                </div>
+                <div
+                  class="flip-card-back bg-yellow-50 bg-opacity-90 rounded-xl p-6 text-center text-gray-800 shadow-lg flex items-center justify-center"
+                >
+                  <div
+                    class="w-full bg-white/95 p-4 rounded-lg shadow-md border-l-4 border-yellow-400 text-left"
+                  >
+                    <h4 class="font-bold mb-2 flex items-center">
+                      <i class="fas fa-info-circle text-yellow-500 mr-2"></i>
+                      Quick Tip
+                    </h4>
+                    <p class="text-sm">
+                      High in <span class="font-semibold">Vitamin E</span> —
+                      great for frying. Avoid
+                      <span class="font-semibold">repeated heating</span> to
+                      limit harmful breakdown products.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card h-64">
+              <div class="flip-card-inner">
+                <div
+                  class="flip-card-front bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl p-6 text-center text-white shadow-lg flex flex-col items-center justify-center"
+                >
+                  <i class="fas fa-seedling text-5xl mb-4"></i>
+                  <h3 class="text-xl font-semibold">Mustard Oil</h3>
+                  <p class="text-sm mt-2">“Bold & Flavorful”</p>
+                </div>
+                <div
+                  class="flip-card-back bg-green-50 bg-opacity-90 rounded-xl p-6 text-center text-gray-800 shadow-lg flex items-center justify-center"
+                >
+                  <div
+                    class="w-full bg-white/95 p-4 rounded-lg shadow-md border-l-4 border-green-400 text-left"
+                  >
+                    <h4 class="font-bold mb-2 flex items-center">
+                      <i class="fas fa-stethoscope text-green-500 mr-2"></i> Did
+                      you know?
+                    </h4>
+                    <p class="text-sm">
+                      Mustard oil adds a punch of flavor and has
+                      <span class="font-semibold">antimicrobial</span> qualities
+                      — but use proper high smoke-point techniques for frying.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card h-64">
+              <div class="flip-card-inner">
+                <div
+                  class="flip-card-front bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl p-6 text-center text-white shadow-lg flex flex-col items-center justify-center"
+                >
+                  <i class="fas fa-fire text-5xl mb-4"></i>
+                  <h3 class="text-xl font-semibold">Coconut Oil</h3>
+                  <p class="text-sm mt-2">“The Tropical All-Rounder”</p>
+                </div>
+                <div
+                  class="flip-card-back bg-blue-50 bg-opacity-90 rounded-xl p-6 text-center text-gray-800 shadow-lg flex items-center justify-center"
+                >
+                  <div
+                    class="w-full bg-white/95 p-4 rounded-lg shadow-md border-l-4 border-cyan-400 text-left"
+                  >
+                    <h4 class="font-bold mb-2 flex items-center">
+                      <i class="fas fa-fire text-cyan-500 mr-2"></i> Heat-Stable
+                    </h4>
+                    <p class="text-sm">
+                      Coconut oil stays
+                      <span class="font-semibold"
+                        >stable at high temperatures</span
+                      >
+                      — great for frying and baking. Watch portions: it's high
+                      in <span class="font-semibold">saturated fats</span>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card h-64">
+              <div class="flip-card-inner">
+                <div
+                  class="flip-card-front bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl p-6 text-center text-white shadow-lg flex flex-col items-center justify-center"
+                >
+                  <i class="fas fa-leaf text-5xl mb-4"></i>
+                  <h3 class="text-xl font-semibold">Olive Oil</h3>
+                  <p class="text-sm mt-2">“Heart-Healthy Choice”</p>
+                </div>
+                <div
+                  class="flip-card-back bg-purple-50 bg-opacity-90 rounded-xl p-6 text-center text-gray-800 shadow-lg flex items-center justify-center"
+                >
+                  <div
+                    class="w-full bg-white/95 p-4 rounded-lg shadow-md border-l-4 border-purple-400 text-left"
+                  >
+                    <h4 class="font-bold mb-2 flex items-center">
+                      <i class="fas fa-heart text-purple-500 mr-2"></i> Health
+                      Note
+                    </h4>
+                    <p class="text-sm">
+                      Rich in
+                      <span class="font-semibold">monounsaturated fats</span>
+                      and antioxidants — perfect for salads and low-heat
+                      cooking, but avoid heavy frying.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why-it-matters" class="py-20 px-4 animate-on-scroll">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-100">
+            Why Oil Quality Matters
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="text-center rounded-xl p-6 shadow-lg bg-white bg-opacity-20 animate-on-scroll oil-card"
+            >
+              <i
+                class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"
+              ></i>
+              <h3 class="text-xl font-semibold mb-2">Overheating Risks</h3>
+              <p>Repeated heating creates harmful free radicals.</p>
+            </div>
+            <div
+              class="text-center rounded-xl p-6 shadow-lg bg-white bg-opacity-20 animate-on-scroll oil-card"
+            >
+              <i class="fas fa-heart text-4xl text-green-500 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Health Benefits</h3>
+              <p>Fresh oils support heart health and nutrition.</p>
+            </div>
+            <div
+              class="text-center rounded-xl p-6 shadow-lg bg-white bg-opacity-20 animate-on-scroll oil-card"
+            >
+              <i class="fas fa-microscope text-4xl text-blue-500 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Smart Detection</h3>
+              <p>Test your oil to cook with confidence.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="silent-killer" class="py-20 px-4 animate-on-scroll">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-100">
+            Repeated Heating: The Silent Killer
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="rounded-xl p-8 shadow-lg bg-white bg-opacity-20 animate-on-scroll killer-card"
+            >
+              <div class="flex items-center mb-4">
+                <i class="fas fa-fire text-3xl text-red-500 mr-4"></i>
+                <h3 class="text-xl font-semibold">Oil Breakdown</h3>
+              </div>
+              <p>High heat degrades oil, forming toxic compounds.</p>
+            </div>
+            <div
+              class="rounded-xl p-8 shadow-lg bg-white bg-opacity-20 animate-on-scroll killer-card"
+            >
+              <div class="flex items-center mb-4">
+                <i class="fas fa-heartbeat text-3xl text-yellow-500 mr-4"></i>
+                <h3 class="text-xl font-semibold">Health Risks</h3>
+              </div>
+              <p>Increases inflammation and cardiovascular issues.</p>
+            </div>
+            <div
+              class="rounded-xl p-8 shadow-lg bg-white bg-opacity-20 animate-on-scroll killer-card"
+            >
+              <div class="flex items-center mb-4">
+                <i class="fas fa-sync text-3xl text-green-500 mr-4"></i>
+                <h3 class="text-xl font-semibold">Replace It</h3>
+              </div>
+              <p>Switch to fresh oil for safer cooking.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section
+      class="py-20 px-4 bg-gradient-to-r from-orange-500 to-red-500 text-white text-center"
+    >
+      <div class="max-w-4xl mx-auto animate-on-scroll">
+        <h2 class="text-4xl font-bold mb-6">Test Your Oil Now!</h2>
+        <p class="text-xl mb-8">
+          Ensure your cooking is safe and healthy with our smart sensor
+          dashboard.
+        </p>
+        <a
+          href="/Sensor_data.html"class="inline-block bg-white text-orange-600 font-bold py-4 px-10 rounded-full text-xl hover:bg-yellow-100 hover:scale-110 transition-all duration-300 shadow-xl">DETECT OIL QUALITY</a>
+      </div>
+    </section>
+
+    <script>
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      let particlesArray = [];
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2;
+          this.speedX = (Math.random() - 0.5) * 0.7;
+          this.speedY = (Math.random() - 0.5) * 0.7;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+        draw() {
+          ctx.fillStyle = "rgba(255, 165, 0, 0.7)";
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      function init() {
+        particlesArray = [];
+        for (let i = 0; i < 80; i++) {
+          particlesArray.push(new Particle());
+        }
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particlesArray.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+      init();
+      animate();
+      gsap.registerPlugin(ScrollTrigger);
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+      // Sparkle effect for oil cards
+      document.querySelectorAll(".oil-card").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          for (let i = 0; i < 5; i++) {
+            const sparkle = document.createElement("div");
+            sparkle.classList.add("sparkle");
+            card.appendChild(sparkle);
+            const rect = card.getBoundingClientRect();
+            const x = Math.random() * rect.width;
+            const y = Math.random() * rect.height;
+            gsap.fromTo(
+              sparkle,
+              {
+                x,
+                y,
+                scale: 0,
+                opacity: 1,
+              },
+              {
+                scale: 1.5,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.out",
+                onComplete: () => sparkle.remove(),
+              }
+            );
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
