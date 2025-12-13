@@ -4,12 +4,12 @@
 #include <ThingSpeak.h>
 
 // ---------- WiFi and ThingSpeak ----------
-const char* ssid = "Galaxy A16 5G 2927";
-const char* password = "ttpod123";
+const char* ssid = "";
+const char* password = ";
 WiFiClient client;
 
-unsigned long myChannelNumber = 3070629;
-const char* myWriteAPIKey = "6B4U8UT18SXPTRL4";
+unsigned long myChannelNumber = ;
+const char* myWriteAPIKey = "";
 
 // ---------- Sensor Pins ----------
 const int pHpin = 34;        // ADC1 on ESP32
