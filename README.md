@@ -1,5 +1,4 @@
 # COOKING-OIL-PURITY-DETECTION-FOR-PUBLIC-USE
-# 🍳 IoT-Based Cooking Oil Purity Detection System
 
 ## 📌 Overview
 This project presents a **low-cost embedded system for real-time detection of cooking oil purity**, designed to enhance food safety in public-use environments such as **street food vendors, community kitchens, and small-scale restaurants**.
@@ -104,4 +103,4 @@ The developed system provides a **practical, affordable, and technology-driven a
 
 
 ## 📄 License
-This project is open-source and available under the **MIT License**.
+This project is open-source.
