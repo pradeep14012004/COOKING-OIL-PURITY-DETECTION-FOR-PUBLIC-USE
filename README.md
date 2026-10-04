@@ -104,3 +104,16 @@ The developed system provides a **practical, affordable, and technology-driven a
 
 ## 📄 License
 This project is open-source.
+
+
+## ML Web Demo
+
+The `ml_app/` directory contains a deployable Streamlit classifier. Upload labelled sensor data with `ph,turbidity,color,label` columns, train the lightweight Random Forest in-browser, and test new measurements.
+
+```bash
+cd ml_app
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+A `sample_sensor_data.csv` file is included for demonstration. The classifier is a prototype and should not be treated as a food-safety certification system.
