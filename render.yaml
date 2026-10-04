@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cooking-oil-ml-demo
+    runtime: docker
+    plan: free
+    rootDir: ml_app
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    autoDeploy: true
