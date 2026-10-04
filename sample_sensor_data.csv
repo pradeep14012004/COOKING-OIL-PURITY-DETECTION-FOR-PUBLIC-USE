@@ -1,0 +1,10 @@
+ph,turbidity,color,label
+7.1,8,105,Pure
+7.0,10,110,Pure
+6.9,14,120,Pure
+6.5,35,180,Used
+6.4,45,200,Used
+6.2,55,220,Used
+5.8,85,300,Waste
+5.7,100,340,Waste
+5.5,120,380,Waste
